@@ -1,0 +1,117 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace project
+{
+    class Program
+    {
+        static int rev(int i)
+        {
+            int n = 0, k = 1; 
+            for (int j = i; j != 0; j /= 10) 
+                     k *= 10; k /= 10;
+            for (int j = i; j != 0; j /= 10)
+            {
+                n += j % 10 * k;
+                k /= 10;
+ 
+            }
+            return n;}
+        public static bool IsPrime(int number) 
+        { 
+            for (int i = 2; i < number; i++) 
+            { 
+                if (number % i == 0) 
+                    return false; 
+            } 
+            return true; 
+        }
+        static void Main()
+        {
+
+            // Задание 1-------------------------------
+            Console.WriteLine("ЗАДАНИЕ 1");
+            Console.Write("Введите количество чисел в последовательности Фибоначчи : ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+            int perv = 1;
+            Console.Write("{0} ", perv);
+            int vtor = 1;
+            Console.Write("{0} ", vtor);
+            int sum = 0;
+
+            while (number >= sum)
+            {
+                sum = perv + vtor;
+                    Console.Write("{0} ", sum);
+                    
+                        perv = vtor;
+                        vtor = sum;
+                    
+                }
+            
+            Console.WriteLine("");
+
+            // Задание 2------------------------------
+            Console.WriteLine("ЗАДАНИЕ 2");
+        
+
+            Console.Write("Введите число : ");
+            int num=int.Parse(Console.ReadLine());
+            Console.Write("Простые Множители : ");
+            for(int i=0; num%2==0; num/=2) {
+                Console.Write("{0},", 2);
+                }
+            for(int i=3; i<=num; ) {
+                if(num%i==0) {
+                    Console.Write("{0},", i);
+                    num/=i;
+                }
+                else {
+                    i+=2;
+                    }
+            }
+            Console.WriteLine("");
+
+            // Задание 4------------------------------------
+            Console.WriteLine("ЗАДАНИЕ 4");
+
+            Console.Write("Введите начало диапазона: ");
+            int start1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Введите конец диапазона: ");
+            int end1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine($"Простые числа из диапазона от {start1} до {end1}");
+            int count = 0;
+            for (int i = start1; i <= end1; i++)
+            {
+                if (IsPrime(i))
+                {
+                    Console.Write($"{i}, ");
+                    count++;
+                }
+            }
+            Console.WriteLine("");
+
+            // Задание 5
+            Console.WriteLine("ЗАДАНИЕ 5");
+            Console.Write("Введите начало диапазона: ");
+            int start2 = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Введите конец диапазона: ");
+            int end2 = Convert.ToInt32(Console.ReadLine());
+            Console.Write($"Простые числа из диапазона от {start2} до {end2}: ");
+            for (int i = start2; i < end2; i++)
+            {
+                if (rev(i) == i)
+                   
+                    Console.Write("{0}, ", i);
+ 
+            }
+        }
+    }
+}
