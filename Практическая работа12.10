@@ -1,0 +1,52 @@
+using System;
+
+namespace project{
+
+    class Program {
+
+        static void Main(){
+
+        // Задача 1 Логин - Ra, Пароль - 12345, Код - 54321
+        Console.Write("Логин: ");
+        string l = (Console.ReadLine());
+
+        Console.Write("Пароль: ");
+        string p = (Console.ReadLine());
+        if(l == "Ra" & p == "12345"){
+            Console.Write("Код отправлен на зарегистрированный номер: ");
+            string c = (Console.ReadLine());
+            if (c == "54321"){
+                Console.Write("Вы успешно вошли в систему");
+            }else{
+                Console.Write("Неправильный код");
+            }
+        }else{
+            Console.Write("Неправильный Логин или Пароль");
+        }
+
+        // Задача 3
+        bool prost = true;
+        Console.Write("Введите число: ");
+        int n =int.Parse(Console.ReadLine());
+        for (int i = 2; i <= n / 2; i++)
+        {
+            if (n % i == 0)
+            {
+                prost = false;
+                break;
+            }
+        }
+        if (prost)
+        {
+            Console.WriteLine("Результат: " + n + " - простое число");
+        }
+        else
+        {
+            Console.WriteLine("Результат: " + n +" - непростое число");
+        }
+        Console.ReadKey();
+
+        }
+    }
+
+}
