@@ -1,56 +1,33 @@
 ﻿using System;
+using MathLibrary;
 
-namespace project{
+class Program
+{
+    static void Main()
+    {
+        // Создаем экземпляр класса Calculator
+        Calculator calculator = new Calculator();
 
-    class Programm {
+        AdvancedCalculator advancedCalculator = new AdvancedCalculator();
 
-        static void Main(){
+        // Используем методы для выполнения математических операций
+        int a = calculator.Plus(5, 3);
+        Console.WriteLine($"5 + 3 = {a}");
 
-        // Задача 1
+        int b = calculator.Minus(8, 3);
+        Console.WriteLine($"8 - 3 = {b}");
 
-            Console.Write("Введите количество часов: ");
-            int h = Convert.ToInt32(Console.ReadLine());
-           
-            Console.Write("Введите количество минут: ");
-            int m = Convert.ToInt32(Console.ReadLine());
+        int c = calculator.Multiply(4, 6);
+        Console.WriteLine($"4 * 6 = {c}");
 
-            Console.Write("Введите количество секунд: ");
-            int s = Convert.ToInt32(Console.ReadLine());
+        double d = calculator.Divide(9, 3);
+        Console.WriteLine($"9 / 3 = {d}");
 
-            Console.WriteLine("Все время в секундах: " + ((h * 3600) + (m * 60) + s) + " секунд");
-            
-            # Ваш код выглядит правильным и выполняет задачу корректно. 
-            # Однако, я бы порекомендовал добавить проверку на корректность ввода, чтобы обработать случаи, когда пользователь вводит нечисловые значения. 
+        // Используем методы AdvancedCalculator
+        double resultPower = advancedCalculator.Power(2, 3);
+        Console.WriteLine($"2^3 = {resultPower}");
 
-                
-            // Задача 2
-
-            Console.Write("Радиус: ");
-            double r = Convert.ToDouble(Console.ReadLine());
-
-            Console.Write("Высота: ");
-            double height = Convert.ToDouble(Console.ReadLine());
-
-            Console.WriteLine("V = " + Math.PI * r * r * height);
-            Console.WriteLine("S = " + 2 * Math.PI * r * (height + r));
-
-            #  В реальных приложениях было бы хорошо добавить проверки на корректность ввода, используя, например, double.TryParse, чтобы обработать такие случаи.
-
-            // Задача 3
-            Console.Write("Начальный капитал: ");
-            double kapital = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Процентная ставку: ");
-            double stavka = Convert.ToDouble(Console.ReadLine()) / 100;
-            Console.Write("Кол-во Лет: ");
-            double years = Convert.ToDouble(Console.ReadLine());
-
-            Console.WriteLine("Результат: " + kapital * Math.Pow((1 + stavka), years));
-            
-            # Ваш код выглядит правильным и выполняет задачу расчета конечного капитала при простом процентном наращивании.
-
-            # Задача № 4 - ???
-
-        }
+        double resultSquareRoot = advancedCalculator.SquareRoot(25);
+        Console.WriteLine($"Square Root of 25 = {resultSquareRoot}");
     }
-
 }
