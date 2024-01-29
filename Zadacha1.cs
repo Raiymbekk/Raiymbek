@@ -1,45 +1,17 @@
 ﻿using System;
 
-class Client
+class Person
 {
-    private string firstName;
-    private string lastName;
-    private string accountNumber;
+    private string name;
 
-    public string FirstName
+    public Person(string name)
     {
-        get { return firstName; }
-        set
-        {
-            if (!string.IsNullOrEmpty(value))
-                firstName = value;
-            else
-                Console.WriteLine("Invalid first name");
-        }
+        this.name = name;
     }
 
-    public string LastName
+    public string GetName()
     {
-        get { return lastName; }
-        set
-        {
-            if (!string.IsNullOrEmpty(value))
-                lastName = value;
-            else
-                Console.WriteLine("Invalid last name");
-        }
-    }
-
-    public string AccountNumber
-    {
-        get { return accountNumber; }
-        set
-        {
-            if (!string.IsNullOrEmpty(value))
-                accountNumber = value;
-            else
-                Console.WriteLine("Invalid account number");
-        }
+        return name;
     }
 }
 
@@ -47,12 +19,13 @@ class Zadacha1
 {
     static void Main()
     {
-        // Пример использования класса Client
-        Client client = new Client();
-        client.FirstName = "John";
-        client.LastName = "Doe";
-        client.AccountNumber = "123456789";
+        // Создание экземпляра класса Person
+        Person personInstance = new Person("John Doe");
 
-        Console.WriteLine($"Client: {client.FirstName} {client.LastName}, Account Number: {client.AccountNumber}");
+        // Использование метода GetName() для получения значения поля name
+        string personName = personInstance.GetName();
+
+        // Вывод значения поля name
+        Console.WriteLine("Person's name: " + personName);
     }
 }

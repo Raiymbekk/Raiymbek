@@ -1,27 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 
-class Bookshelf
+public class ImmutableClass
 {
-    private List<string> books;
+    private readonly int value;
 
-    public Bookshelf()
+    public ImmutableClass(int value)
     {
-        books = new List<string>();
+        this.value = value;
     }
 
-    public void AddBook(string bookTitle)
+    public int GetValue()
     {
-        books.Add(bookTitle);
-    }
-
-    public void DisplayBooks()
-    {
-        Console.WriteLine("Books on the Bookshelf:");
-        foreach (var book in books)
-        {
-            Console.WriteLine("- " + book);
-        }
+        return value;
     }
 }
 
@@ -29,12 +19,13 @@ class Zadacha4
 {
     static void Main()
     {
-        // Пример использования класса Bookshelf
-        Bookshelf bookshelf = new Bookshelf();
-        bookshelf.AddBook("Book 1");
-        bookshelf.AddBook("Book 2");
-        bookshelf.AddBook("Book 3");
+        // Создание экземпляра неизменяемого класса
+        ImmutableClass immutableInstance = new ImmutableClass(42);
 
-        bookshelf.DisplayBooks();
+        // Попытка изменения значения (неудачная из-за readonly)
+        // immutableInstance.value = 50; // Эта строка вызовет ошибку компиляции
+
+        // Вывод значения поля value
+        Console.WriteLine("ImmutableClass's value: " + immutableInstance.GetValue());
     }
 }
