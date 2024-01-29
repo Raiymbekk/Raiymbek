@@ -1,17 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 
-public class ImmutableClass
+class Bookshelf
 {
-    private readonly int value;
+    private List<string> books;
 
-    public ImmutableClass(int value)
+    public Bookshelf()
     {
-        this.value = value;
+        books = new List<string>();
     }
 
-    public int GetValue()
+    public void AddBook(string bookTitle)
     {
-        return value;
+        books.Add(bookTitle);
+    }
+
+    public void DisplayBooks()
+    {
+        Console.WriteLine("Books on the Bookshelf:");
+        foreach (var book in books)
+        {
+            Console.WriteLine("- " + book);
+        }
     }
 }
 
@@ -19,13 +29,12 @@ class Zadacha4
 {
     static void Main()
     {
-        // Создание экземпляра неизменяемого класса
-        ImmutableClass immutableInstance = new ImmutableClass(42);
+        // Пример использования класса Bookshelf
+        Bookshelf bookshelf = new Bookshelf();
+        bookshelf.AddBook("Book 1");
+        bookshelf.AddBook("Book 2");
+        bookshelf.AddBook("Book 3");
 
-        // Попытка изменения значения (неудачная из-за readonly)
-        // immutableInstance.value = 50; // Эта строка вызовет ошибку компиляции
-
-        // Вывод значения поля value
-        Console.WriteLine("ImmutableClass's value: " + immutableInstance.GetValue());
+        bookshelf.DisplayBooks();
     }
 }

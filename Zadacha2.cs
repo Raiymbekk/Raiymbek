@@ -1,24 +1,29 @@
 ﻿using System;
 
-class Vehicle
+class Shape
 {
-    protected int speed;
+    public string Color { get; set; }
+    public double CenterX { get; set; }
+    public double CenterY { get; set; }
+}
 
-    public Vehicle(int speed)
+class Circle : Shape
+{
+    public double Radius { get; set; }
+
+    public double CalculateArea()
     {
-        this.speed = speed;
+        return Math.PI * Radius * Radius;
     }
 }
 
-class Car : Vehicle
+class Square : Shape
 {
-    public Car(int speed) : base(speed)
-    {
-    }
+    public double SideLength { get; set; }
 
-    public int GetSpeed()
+    public double CalculateArea()
     {
-        return speed;
+        return SideLength * SideLength;
     }
 }
 
@@ -26,11 +31,11 @@ class Zadacha2
 {
     static void Main()
     {
-        // Создание объекта класса Car и вызов метода GetSpeed()
-        Car carInstance = new Car(60);
-        int carSpeed = carInstance.GetSpeed();
+        // Пример использования классов для круга и квадрата
+        Circle circle = new Circle { Color = "Red", CenterX = 0, CenterY = 0, Radius = 5 };
+        Square square = new Square { Color = "Blue", CenterX = 0, CenterY = 0, SideLength = 4 };
 
-        // Вывод значения скорости
-        Console.WriteLine("Car's speed: " + carSpeed);
+        Console.WriteLine($"Circle Area: {circle.CalculateArea()}, Color: {circle.Color}");
+        Console.WriteLine($"Square Area: {square.CalculateArea()}, Color: {square.Color}");
     }
 }
