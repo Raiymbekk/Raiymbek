@@ -1,0 +1,82 @@
+using System;
+
+// Базовый класс Shape
+public abstract class Shape
+{
+    // Абстрактный метод для вычисления площади
+    public abstract double CalculateArea();
+}
+
+// Класс Circle наследует от Shape
+public class Circle : Shape
+{
+    public double Radius { get; }
+
+    // Конструктор класса Circle
+    public Circle(double radius)
+    {
+        Radius = radius;
+    }
+
+    // Переопределение метода CalculateArea для круга
+    public override double CalculateArea()
+    {
+        return Math.PI * Math.Pow(Radius, 2);
+    }
+}
+
+// Класс Rectangle наследует от Shape
+public class Rectangle : Shape
+{
+    public double Width { get; }
+    public double Height { get; }
+
+    // Конструктор класса Rectangle
+    public Rectangle(double width, double height)
+    {
+        Width = width;
+        Height = height;
+    }
+
+    // Переопределение метода CalculateArea для прямоугольника
+    public override double CalculateArea()
+    {
+        return Width * Height;
+    }
+}
+
+// Класс Triangle наследует от Shape
+public class Triangle : Shape
+{
+    public double BaseLength { get; }
+    public double Height { get; }
+
+    // Конструктор класса Triangle
+    public Triangle(double baseLength, double height)
+    {
+        BaseLength = baseLength;
+        Height = height;
+    }
+
+    // Переопределение метода CalculateArea для треугольника
+    public override double CalculateArea()
+    {
+        return 0.5 * BaseLength * Height;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Пример использования
+        Circle circle = new Circle(5);
+        Console.WriteLine($"Area of the circle: {circle.CalculateArea()}");
+
+        Rectangle rectangle = new Rectangle(4, 6);
+        Console.WriteLine($"Area of the rectangle: {rectangle.CalculateArea()}");
+
+        Triangle triangle = new Triangle(3, 4);
+        Console.WriteLine($"Area of the triangle: {triangle.CalculateArea()}");
+    }
+}
