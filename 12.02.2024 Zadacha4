@@ -1,0 +1,116 @@
+using System;
+
+// Базовый класс ElectronicDevice
+public class ElectronicDevice
+{
+    // Общие свойства электронного устройства
+    public string Brand { get; set; } // Марка
+    public string Model { get; set; } // Модель
+    public double Power { get; set; } // Потребляемая мощность (в ваттах)
+
+    // Конструктор класса ElectronicDevice
+    public ElectronicDevice(string brand, string model, double power)
+    {
+        Brand = brand;
+        Model = model;
+        Power = power;
+    }
+
+    // Метод для включения электронного устройства
+    public virtual void TurnOn()
+    {
+        Console.WriteLine($"{Brand} {Model} is turned on.");
+    }
+
+    // Метод для выключения электронного устройства
+    public virtual void TurnOff()
+    {
+        Console.WriteLine($"{Brand} {Model} is turned off.");
+    }
+}
+
+// Класс Smartphone наследует от ElectronicDevice
+public class Smartphone : ElectronicDevice
+{
+    // Уникальные свойства для смартфона
+    public string OperatingSystem { get; set; } // Операционная система
+    public double ScreenSize { get; set; } // Размер экрана (в дюймах)
+
+    // Конструктор класса Smartphone
+    public Smartphone(string brand, string model, double power, string operatingSystem, double screenSize)
+        : base(brand, model, power)
+    {
+        OperatingSystem = operatingSystem;
+        ScreenSize = screenSize;
+    }
+
+    // Переопределение метода TurnOn для смартфона
+    public override void TurnOn()
+    {
+        base.TurnOn(); // Вызываем метод TurnOn базового класса
+        Console.WriteLine($"Unlock {Brand} {Model} and start using.");
+    }
+}
+
+// Класс Laptop наследует от ElectronicDevice
+public class Laptop : ElectronicDevice
+{
+    // Уникальные свойства для ноутбука
+    public string Processor { get; set; } // Процессор
+    public int Ram { get; set; } // Оперативная память (в гигабайтах)
+
+    // Конструктор класса Laptop
+    public Laptop(string brand, string model, double power, string processor, int ram)
+        : base(brand, model, power)
+    {
+        Processor = processor;
+        Ram = ram;
+    }
+
+    // Переопределение метода TurnOff для ноутбука
+    public override void TurnOff()
+    {
+        Console.WriteLine($"Shutting down {Brand} {Model}. Save your work before turning off.");
+        base.TurnOff(); // Вызываем метод TurnOff базового класса
+    }
+}
+
+// Класс TV наследует от ElectronicDevice
+public class TV : ElectronicDevice
+{
+    // Уникальные свойства для телевизора
+    public string DisplayType { get; set; } // Тип дисплея (LCD, LED, OLED и т.д.)
+    public int ResolutionWidth { get; set; } // Ширина разрешения (в пикселях)
+    public int ResolutionHeight { get; set; } // Высота разрешения (в пикселях)
+
+    // Конструктор класса TV
+    public TV(string brand, string model, double power, string displayType, int resolutionWidth, int resolutionHeight)
+        : base(brand, model, power)
+    {
+        DisplayType = displayType;
+        ResolutionWidth = resolutionWidth;
+        ResolutionHeight = resolutionHeight;
+    }
+
+    // Метод для изменения канала на телевизоре
+    public void ChangeChannel(int channel)
+    {
+        Console.WriteLine($"Changing channel to {channel} on {Brand} {Model}.");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Пример использования
+        Smartphone smartphone = new Smartphone("Apple", "iPhone 12", 5.0, "iOS", 6.1);
+        smartphone.TurnOn();
+
+        Laptop laptop = new Laptop("Dell", "XPS 15", 45.0, "Intel Core i7", 16);
+        laptop.TurnOff();
+
+        TV tv = new TV("Samsung", "QLED Q90R", 120.0, "QLED", 3840, 2160);
+        tv.ChangeChannel(5);
+    }
+}
