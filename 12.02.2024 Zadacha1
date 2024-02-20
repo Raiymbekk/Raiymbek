@@ -1,0 +1,76 @@
+using System;
+
+public class BankAccount
+{
+    // Поля класса BankAccount
+    public string AccountNumber { get; set; } // Номер счета
+    public string AccountHolder { get; set; } // Владелец счета
+    public decimal Balance { get; protected set; } // Баланс счета
+
+    // Конструктор класса BankAccount
+    public BankAccount(string accountNumber, string accountHolder, decimal balance)
+    {
+        // Инициализация полей счета
+        AccountNumber = accountNumber;
+        AccountHolder = accountHolder;
+        Balance = balance;
+    }
+
+    // Метод для внесения денег на счет
+    public virtual void Deposit(decimal amount)
+    {
+        Balance += amount; // Увеличиваем баланс на сумму внесения
+        Console.WriteLine($"Deposited {amount:C}. New balance is {Balance:C}."); // Выводим информацию о транзакции
+    }
+
+    // Метод для снятия денег со счета
+    public virtual void Withdraw(decimal amount)
+    {
+        if (amount <= Balance) // Проверяем, достаточно ли средств на счете для снятия
+        {
+            Balance -= amount; // Уменьшаем баланс на сумму снятия
+            Console.WriteLine($"Withdrawn {amount:C}. New balance is {Balance:C}."); // Выводим информацию о транзакции
+        }
+        else
+        {
+            Console.WriteLine("Insufficient funds."); // Если средств недостаточно, выводим сообщение об ошибке
+        }
+    }
+}
+
+public class SavingsAccount : BankAccount
+{
+    // Дополнительное поле класса SavingsAccount
+    public decimal InterestRate { get; }
+
+    // Конструктор класса SavingsAccount
+    public SavingsAccount(string accountNumber, string accountHolder, decimal balance, decimal interestRate)
+        : base(accountNumber, accountHolder, balance) // Вызываем конструктор базового класса
+    {
+        InterestRate = interestRate; // Инициализируем поле процентной ставки
+    }
+
+    // Метод для начисления процентов
+    public void AccrueInterest()
+    {
+        decimal interest = Balance * InterestRate; // Вычисляем сумму начисленных процентов
+        Deposit(interest); // Вносим начисленные проценты на счет
+        Console.WriteLine($"Interest of {interest:C} accrued. New balance is {Balance:C}."); // Выводим информацию о транзакции
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Пример использования
+        SavingsAccount savingsAccount = new SavingsAccount("123456789", "John Doe", 1000, 0.05m); // Создаем экземпляр класса SavingsAccount
+        Console.WriteLine($"Account holder: {savingsAccount.AccountHolder}"); // Выводим информацию о владельце счета
+        Console.WriteLine($"Initial balance: {savingsAccount.Balance:C}"); // Выводим информацию о начальном балансе
+
+        savingsAccount.Deposit(500); // Вносим на счет 500
+        savingsAccount.Withdraw(200); // Снимаем со счета 200
+
+        savingsAccount.AccrueInterest(); // Начисляем проценты
+    }
+}
